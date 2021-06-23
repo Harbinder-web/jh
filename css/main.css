@@ -9,6 +9,33 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+div#popup {
+  display: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+  /* show the popup */
+  div#popup {
+    display: block;
+    position: relative;
+    height: 10px;
+  }
+  #slide {
+    width: 100px;
+    height: 20px;
+    background-color: lightgrey;
+    animation: move 2s infinite;
+  }
+
+  @keyframes move {
+    from {
+      margin-left: 0px;
+    }
+    to {
+      margin-left: 100px;
+    }
+  }
+}
 
 html,
 button,
@@ -469,7 +496,7 @@ header .year {
 }
 
 header .bride {
-  left: 260px;
+  left: 227px;
   -webkit-transform: rotate(353deg);
   -moz-transform: rotate(353deg);
   -o-transform: rotate(353deg);
@@ -479,7 +506,7 @@ header .bride {
 
 header .groom {
   right: 0%;
-  margin-right: 230px;
+  margin-right: 200px;
   -webkit-transform: rotate(7deg);
   -moz-transform: rotate(7deg);
   -o-transform: rotate(7deg);
