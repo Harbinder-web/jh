@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Sreda";
+  src: url("../webfonts/266176_0_0.eot");
+  src: url("../webfonts/266176_0_0d41d.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/266176_0_0.woff") format("woff"),
+    url("../webfonts/266176_0_0.ttf") format("truetype"),
+    url("../webfonts/266176_0_0.svg#wf") format("svg");
+}
