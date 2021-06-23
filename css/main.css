@@ -12,6 +12,9 @@
 div#popup {
   display: none;
 }
+#zone-marriage1 {
+  display: none;
+}
 
 @media only screen and (max-device-width: 480px) {
   /* show the popup */
@@ -20,20 +23,8 @@ div#popup {
     position: relative;
     height: 10px;
   }
-  #slide {
-    width: 100px;
-    height: 20px;
-    background-color: lightgrey;
-    animation: move 2s infinite;
-  }
-
-  @keyframes move {
-    from {
-      margin-left: 0px;
-    }
-    to {
-      margin-left: 100px;
-    }
+  #zone-marriage1 {
+    display: block;
   }
 }
 
