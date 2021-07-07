@@ -27915,10 +27915,14 @@ button.close {
   content: "\e68d";
 }
 .ti-menu:before {
-  content: "\e68e";
+  content: "\f0c9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 .ti-menu-alt:before {
-  content: "\e68f";
+  content: "\f103";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 .ti-map:before {
   content: "\e690";
@@ -28614,7 +28618,7 @@ button.close {
   content: "\f112";
 }
 .flaticon-drink:before {
-  content: "\f79f";
+  content: "\f70b";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
@@ -35433,8 +35437,8 @@ video::-webkit-media-text-track-display {
   display: none;
 }
 .slick-loading .slick-list {
-  background: #fff url(../../../../images/ajax-loader.gif) center
-    center no-repeat;
+  background: #fff url(../../../../images/ajax-loader.gif) center center
+    no-repeat;
 }
 .slick-prev,
 .slick-next {
@@ -46174,8 +46178,8 @@ body table code {
   bottom: 0;
   top: 0;
   z-index: 10;
-  background: #f8f9f9 url(../../../../images/ajax-processing.gif)
-    no-repeat center center;
+  background: #f8f9f9 url(../../../../images/ajax-processing.gif) no-repeat
+    center center;
 }
 .cata-video-html {
   position: relative;
