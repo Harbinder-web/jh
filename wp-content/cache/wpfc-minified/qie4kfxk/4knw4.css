@@ -1,3 +1,4 @@
+/* prettier-ignore */
 .rs-particles-canvas {
   position: absolute;
   top: 0;
@@ -35432,7 +35433,7 @@ video::-webkit-media-text-track-display {
   display: none;
 }
 .slick-loading .slick-list {
-  background: #fff url(../../../themes/sweetinz/images/ajax-loader.gif) center
+  background: #fff url(../../../../images/ajax-loader.gif) center
     center no-repeat;
 }
 .slick-prev,
@@ -45111,7 +45112,7 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url(../../../themes/sweetinz/images/icon-select.png);
+  background-image: url(../../../../images/icon-select.png);
   background-position: right center;
   background-repeat: no-repeat;
   background-color: #fff;
@@ -46173,7 +46174,7 @@ body table code {
   bottom: 0;
   top: 0;
   z-index: 10;
-  background: #f8f9f9 url(../../../themes/sweetinz/images/ajax-processing.gif)
+  background: #f8f9f9 url(../../../../images/ajax-processing.gif)
     no-repeat center center;
 }
 .cata-video-html {
