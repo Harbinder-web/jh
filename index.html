@@ -937,7 +937,7 @@
                                                     <h3 id="title_6n7mo"
                                                         class="heading-title style2 text-center text-light has-animation"
                                                         data-animation-type="fadeInUp" data-animation-duration="700"
-                                                        data-animation-delay="200"><span>July 18th, 2021</span></h3>
+                                                        data-animation-delay="200"><span>August 1st, 2021</span></h3>
                                                     <div id="cata_empty_space_vzk9m"
                                                         class="cata-empty-space cata-element" style="height: 15px">
                                                     </div>
@@ -965,7 +965,7 @@
                                                                     data-animation-duration="700"
                                                                     data-animation-delay="250">
                                                                     <div class="cata-countdown-content"
-                                                                        data-date="2021/06/18/0/0"></div>
+                                                                        data-date="2021/07/01/0/0"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1010,29 +1010,19 @@
                                                         class="cata-contact-form cata-element form-style2 has-animation"
                                                         data-animation-type="fadeInRight" data-animation-duration="700"
                                                         data-animation-delay="200">
-                                                        <div class="cata-desc">Please reserve before July 11, 2021
+                                                        <div class="cata-desc">Please reserve before July 25, 2021
                                                             Tell us if you're coming</div>
                                                         <div class="ctact-from-wrapper">
                                                             <div role="form" class="wpcf7" id="wpcf7-f413-p464-o1"
                                                                 lang="en-US" dir="ltr">
                                                                 <div class="screen-reader-response"></div>
-                                                                <form action="#" method="post" class="wpcf7-form"
-                                                                    novalidate="novalidate">
-                                                                    <div style="display: none;"><input type="hidden"
-                                                                            name="_wpcf7" value="413" /><input
-                                                                            type="hidden" name="_wpcf7_version"
-                                                                            value="5.1.1" /><input type="hidden"
-                                                                            name="_wpcf7_locale" value="en_US" /><input
-                                                                            type="hidden" name="_wpcf7_unit_tag"
-                                                                            value="wpcf7-f413-p464-o1" /><input
-                                                                            type="hidden" name="_wpcf7_container_post"
-                                                                            value="464" /><input type="hidden"
-                                                                            name="g-recaptcha-response" /></div>
+                                                                <form novalidate="novalidate" id="form" target="_self"
+                                                                    class="wpcf7-form" onsubmit=""
+                                                                    action="javascript: postToGoogle()">
                                                                     <div class="cata-rsvp-form">
                                                                         <p><span
                                                                                 class="wpcf7-form-control-wrap full-name"><input
-                                                                                    type="text" name="full-name"
-                                                                                    size="40"
+                                                                                    type="text" name="name" size="40"
                                                                                     class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
                                                                                     aria-required="true"
                                                                                     aria-invalid="false"
@@ -1040,8 +1030,7 @@
                                                                         </p>
                                                                         <p><span
                                                                                 class="wpcf7-form-control-wrap your-email"><input
-                                                                                    type="email" name="your-email"
-                                                                                    size="40"
+                                                                                    type="email" name="email" size="40"
                                                                                     class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
                                                                                     aria-required="true"
                                                                                     aria-invalid="false"
@@ -1067,7 +1056,7 @@
                                                                                     </select></span></p>
                                                                             <p class="col"><span
                                                                                     class="wpcf7-form-control-wrap guests_attending"><select
-                                                                                        name="guests_attending"
+                                                                                        name="event"
                                                                                         class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required cata-guests-attending"
                                                                                         aria-required="true"
                                                                                         aria-invalid="false">
@@ -1088,8 +1077,7 @@
                                                                         </div>
                                                                         <p><span
                                                                                 class="wpcf7-form-control-wrap your-message"><textarea
-                                                                                    name="your-message" cols="40"
-                                                                                    rows="10"
+                                                                                    name="message" cols="40" rows="10"
                                                                                     class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required"
                                                                                     aria-required="true"
                                                                                     aria-invalid="false"
@@ -1103,6 +1091,8 @@
                                                                     <div
                                                                         class="wpcf7-response-output wpcf7-display-none">
                                                                     </div>
+                                                                    <span id="success_message"
+                                                                        class="text-warning"></span>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -1365,6 +1355,44 @@
     <script src='wp-content/cache/wpfc-minified/856a02bf699f997f6d5dae91c66a54b1/4knw4.js'></script>
     <script src='wp-content/cache/wpfc-minified/00a6c89ff78e01d880c7e48ed5edd473/4knw4.js'></script>
 
+    <!-- Contact form -->
+    <script type="text/javascript">
+        function postToGoogle() {
+            var field1 = $("[name='name']").val();
+            var field2 = $("[name='email']").val();
+            var field3 = $("[name='number_guests']").val();
+            var field4 = $("[name='event']").val();
+            var field5 = $("[name='message']").val();
+            $.ajax({
+                url:
+                    "https://docs.google.com/forms/d/e/1FAIpQLScK2U4TQ_Hb59vI31RDMGwyPL2m451ePchA5JC4O7BvJxbsSQ/formResponse",
+                data: {
+                    "entry.476629508": field1,
+                    "entry.1071933944": field2,
+                    "entry.420338391": field3,
+                    "entry.1332535166": field4,
+                    "entry.1713395644": field5
+                },
+                type: "POST",
+                dataType: "xml",
+                statusCode: {
+                    0: function () {
+                        //Success message
+                        $("form").trigger("reset");
+                        $('#success_message').fadeIn().html("Message Sent");
+                        setTimeout(function () {
+                            $('#success_message').fadeOut("Slow");
+                        }, 2000);
+                    },
+                    200: function () {
+                        //Success Message
+                        alert("Success!");
+                    }
+                }
+            });
+        }
+
+    </script>
 </body>
 
 </html>
