@@ -19,10 +19,14 @@
         #rs-demo-id {}
     </style>
 
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <style id='sweetinz-dynamic-css-inline-css'>
         .cata-header.v3 .header-logo {
@@ -1016,9 +1020,10 @@
                                                             <div role="form" class="wpcf7" id="wpcf7-f413-p464-o1"
                                                                 lang="en-US" dir="ltr">
                                                                 <div class="screen-reader-response"></div>
-                                                                <form novalidate="novalidate" id="form" target="_self"
-                                                                    class="wpcf7-form" onsubmit=""
-                                                                    action="javascript: postToGoogle()">
+                                                                <span id="feedback" class="text-warning"></span>
+                                                                <span id="success_message" class="text-success"></span>
+                                                                <form id="form" target="_self" class="wpcf7-form"
+                                                                    onsubmit="" action="javascript: postToGoogle()">
                                                                     <div class="cata-rsvp-form">
                                                                         <p><span
                                                                                 class="wpcf7-form-control-wrap full-name"><input
@@ -1043,7 +1048,8 @@
                                                                                         class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required cata-guests-number"
                                                                                         aria-required="true"
                                                                                         aria-invalid="false">
-                                                                                        <option>Number Of Guests
+                                                                                        <option hidden selected
+                                                                                            disabled>Number Of Guests
                                                                                         </option>
                                                                                         <option value="One">One</option>
                                                                                         <option value="Two">Two</option>
@@ -1060,15 +1066,15 @@
                                                                                         class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required cata-guests-attending"
                                                                                         aria-required="true"
                                                                                         aria-invalid="false">
-                                                                                        <option>What Will You Be
+                                                                                        <option hidden selected
+                                                                                            disabled>What Will You Be
                                                                                             Attending</option>
-                                                                                        <option
-                                                                                            value="The Rehearsal Dinner">
+                                                                                        <option value="Mayian">
                                                                                             Mayian
                                                                                         </option>
-                                                                                        <option value="The Ceremony">
+                                                                                        <option value="Shagan">
                                                                                             Shagan</option>
-                                                                                        <option value="The Afterparty">
+                                                                                        <option value="Wedding">
                                                                                             Wedding</option>
                                                                                         <option
                                                                                             value="All Of The Above">All
@@ -1091,8 +1097,7 @@
                                                                     <div
                                                                         class="wpcf7-response-output wpcf7-display-none">
                                                                     </div>
-                                                                    <span id="success_message"
-                                                                        class="text-warning"></span>
+
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -1358,40 +1363,71 @@
     <!-- Contact form -->
     <script type="text/javascript">
         function postToGoogle() {
-            var field1 = $("[name='name']").val();
-            var field2 = $("[name='email']").val();
-            var field3 = $("[name='number_guests']").val();
-            var field4 = $("[name='event']").val();
-            var field5 = $("[name='message']").val();
-            $.ajax({
-                url:
-                    "https://docs.google.com/forms/d/e/1FAIpQLScK2U4TQ_Hb59vI31RDMGwyPL2m451ePchA5JC4O7BvJxbsSQ/formResponse",
-                data: {
+            setTimeout(function () {
+                var field1 = $("[name='name']").val();
+                var field2 = $("[name='email']").val();
+                var field3 = $("[name='number_guests']").val();
+                var field4 = $("[name='event']").val();
+                var field5 = $("[name='message']").val();
+                data = {
                     "entry.476629508": field1,
                     "entry.1071933944": field2,
                     "entry.420338391": field3,
                     "entry.1332535166": field4,
                     "entry.1713395644": field5
-                },
-                type: "POST",
-                dataType: "xml",
-                statusCode: {
-                    0: function () {
-                        //Success message
-                        $("form").trigger("reset");
-                        $('#success_message').fadeIn().html("Message Sent");
-                        setTimeout(function () {
-                            $('#success_message').fadeOut("Slow");
-                        }, 2000);
-                    },
-                    200: function () {
-                        //Success Message
-                        alert("Success!");
-                    }
                 }
-            });
-        }
 
+                // Validate form
+                var formSuccess = true;
+                Object.keys(data).forEach(function (key, index) {
+                    if (!data[key]) {
+                        formSuccess = false;
+                        $('#feedback').fadeIn().html('<label class="text - danger">Please complete all the fields! 😯</label>');
+                        setTimeout(function () {
+                            $('#feedback').fadeOut("Slow");
+                        }, 2000);
+                    }
+                });
+
+                if (formSuccess) {
+                    $.ajax({
+                        url:
+                            "https://docs.google.com/forms/d/e/1FAIpQLScK2U4TQ_Hb59vI31RDMGwyPL2m451ePchA5JC4O7BvJxbsSQ/formResponse",
+                        data: data,
+                        type: "POST",
+                        dataType: "jsonp",
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                        },
+                        statusCode: {
+                            0: function () {
+                                //try again
+                                $('#feedback').fadeIn().html('<label class="text-danger">Please try again!😯</label>');
+                                setTimeout(function () {
+                                    $('#feedback').fadeOut("Slow");
+                                }, 2000);
+                            },
+                            200: function () {
+                                //Success message
+                                $("form").trigger("reset");
+                                $('#success_message').fadeIn().html("Thank you for the blessings!😇");
+                                setTimeout(function () {
+                                    $('#success_message').fadeOut("Slow");
+                                }, 5000);
+                            },
+                            400: function () {
+                                //try again
+                                $('#feedback').fadeIn().html('<label class="text-danger">Please try again!😯</label>');
+                                setTimeout(function () {
+                                    $('#feedback').fadeOut("Slow");
+                                }, 2000);
+                            },
+                        }
+                    });
+                }
+            }, 300)
+        }
     </script>
 </body>
 
